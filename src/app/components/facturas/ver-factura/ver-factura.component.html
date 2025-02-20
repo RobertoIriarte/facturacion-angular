@@ -1,0 +1,76 @@
+<div class="content">
+    <div class="rutas">  
+      <div class="table-container">
+        <loading-spinners *ngIf="isLoading"></loading-spinners>
+        <p class="rojo">
+          Datos de la facturas
+        </p>
+        
+        <div class="formulario">
+            <loading-spinners *ngIf="isLoading"></loading-spinners>
+            
+            <label for=""><strong>Datos factura</strong></label>
+            <form [formGroup]="formulario">
+                <div>
+                    <p>Numero de Factura:</p>
+                    <input class="disabled-input"  type="text" placeholder="numFactura" [value]="datosCabecera?.numeroFactura">
+                </div>
+                <div>
+                    <p>Rut cliente:</p>
+                    <input class="disabled-input"  type="text" formControlName="rut" placeholder="rut" [value]="clienteSeleccionado?.rut" >
+                </div>
+            
+                <div>
+                    <p>Nombre cliente:</p>
+                    <input class="disabled-input" type="text" formControlName="razonSocial" placeholder="razonSocial" [value]="clienteSeleccionado?.nombre" >
+                </div>
+                
+                <div>
+                    <p>Correo cliente:</p>
+                    <input class="disabled-input" type="email " formControlName="correo" placeholder="correo" [value]="clienteSeleccionado?.correo" >
+                </div>
+            
+                <br>
+            
+                <div class="separador">
+                    <label for=""><strong>Productos</strong></label>
+                    <div>
+                        <table>
+                            <thead>
+                                <tr>
+                                <th>Cod Producto</th>
+                                <th>Nombre Producto</th>
+                                <th>Precio</th>
+                                <th>Cantidad</th>
+                                </tr>
+                            </thead>
+                        
+                            <tbody>
+                                <tr *ngFor="let listProducto of listProductos">
+                                    <td>{{ listProducto.codProducto }}</td>
+                                    <td>{{ listProducto.nombreProducto }}</td>
+                                    <td>${{ listProducto.precioProducto | number }}</td>
+                                    <td>{{ listProducto.cantidadProducto }}</td>
+                                    <td id="eliminar" class="eliminar">
+                                        <button>✔️</button>
+                                    </td>
+                                </tr>
+                                <tr class="sin-datos-tabla" *ngIf="listProductos.length === 0">No hay productos registrados*</tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            
+                <div class="valores-a-pagar">
+                <p class="impuesto-usado"><span>*Porcentaje de impuesto usado: {{porcentajeIva}}%</span> </p>
+                <p><span>subtotal: </span> {{subtotal | currency }}  </p>
+                <p><span>IVA:</span> ${{igv | number: '1.2-2' }}</p>
+                <p><span>Total:</span> ${{total | number: '1.2-2'  }}</p>
+                
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+  

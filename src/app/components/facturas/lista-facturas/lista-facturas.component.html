@@ -1,0 +1,52 @@
+<div class="content">
+  <div class="rutas">  
+    <div class="table-container">
+      <loading-spinners *ngIf="isLoading"></loading-spinners>
+      <p class="rojo">
+        Tabla de facturas
+      </p>
+
+      <div class="buscar">
+        <label for="">Buscar: </label>
+        <input type="text" (keyup)="buscar($event)">
+        
+      </div>
+
+      
+      <div class="separador" style='height:70%;display:block;overflow: auto'>
+        <div >
+          <table >
+            <thead>
+              <tr>
+                <!--th>ID</th-->
+                <th>Num Factura</th>
+                <th>Rut Cliente</th>
+                <th>Subtotal</th>
+                <th>Iva</th>
+                <th>total</th>
+                <th class="eliminar">Acciones</th>
+              </tr>
+            </thead>
+            
+              <tbody>
+
+                <tr *ngFor="let factura of facturasFiltradas">
+                  <!--td>{{ factura.idFcatura }}</td-->
+                  <td>{{ factura.numeroFactura }}</td>
+                  <td >{{ factura.rutCliente }}</td>
+                  <td>${{ factura.subtotal | number }}</td>
+                  <td>${{ factura.igv | number }}</td>
+                  <td>${{ factura.total | number }}</td>
+                  <td class="eliminar">
+                    <button class="editar" [routerLink]="['/app/ver-factura', factura.idFcatura]" >🔍</button>
+                  </td>
+                </tr>
+              </tbody>
+          </table>
+        </div>
+      </div>
+
+
+    </div>
+</div>
+</div>

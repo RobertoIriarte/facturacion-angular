@@ -1,0 +1,46 @@
+<div class="pop-up">
+    <form [formGroup]="proveedorForm" (ngSubmit)="guardar()">
+  
+      <div>
+        <label for="rut">Rut:</label>
+        <div>
+          <input maxlength="10" type="text" formControlName="rut" placeholder="123456789-0">
+          <span *ngIf="proveedorForm.get('rut') && proveedorForm.get('rut')!.errors && proveedorForm.get('rut')!.touched">
+            Por favor, ingrese un Rut válido
+          </span>
+        </div>
+      </div>
+
+      <div>
+        <label for="nombre">Nombre:</label>
+        <div>
+          <input type="text" formControlName="nombre" placeholder="Nombre">
+          <span *ngIf="proveedorForm.get('nombre') && proveedorForm.get('nombre')!.errors && proveedorForm.get('nombre')!.touched">
+            Por favor, ingrese solo texto.
+          </span>
+        </div>
+      </div>
+  
+      <div>
+        <label for="correo">Correo:</label>
+        <div>
+          <input class="" type="email" formControlName="correo" placeholder="Correo">
+          <span *ngIf="proveedorForm.get('correo')?.invalid && (proveedorForm.get('correo')?.dirty || proveedorForm.get('correo')?.touched)">
+            Por favor, ingrese un correo válido.
+          </span>
+        </div>
+      </div>
+
+      <div>
+        <label for="fechaCreacion">Fecha Creacion:</label>
+        <div>
+          <input class="fecha" type="date" formControlName="fechaCreacion" placeholder="Fecha Creacion">
+          <span *ngIf="proveedorForm.get('fechaCreacion')?.invalid && (proveedorForm.get('fechaCreacion')?.dirty || proveedorForm.get('fechaCreacion')?.touched)">
+            Por favor, ingrese una fecha válida.
+          </span>
+        </div>
+      </div>
+
+      <button type="submit">Guardar</button>
+    </form>
+  </div>

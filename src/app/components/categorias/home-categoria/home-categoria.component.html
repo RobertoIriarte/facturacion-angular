@@ -1,0 +1,51 @@
+<div class="table-container">
+    <loading-spinners *ngIf="isLoading"></loading-spinners>
+    <p class="rojo">
+      Tabla de categorias
+    </p>
+  
+    <div class="buscar">
+      <label for="">Buscar: </label>
+      <input type="text" (keyup)="buscar($event)">
+      
+    </div>
+  
+    <button id="nuevo" (click)="toggleModoNuevo()" >Nuevo +</button>
+    
+    <div class="separador" style='height:70%;display:block;overflow: auto'>
+      <div>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Descripción</th>
+              <th class="eliminar">Acciones</th>
+            </tr>
+          </thead>
+          
+  
+          <tbody>
+            <tr *ngFor="let categoria of filtroCategoria">
+              <td>{{ categoria.categoria_id }}</td>
+              <td >{{ categoria.nombre }}</td>
+              <td>{{ categoria.descripcion }}</td>
+              <td class="eliminar">
+                <button (click)="clickDelete(categoria.nombre, categoria.categoria_id)">❌</button>
+                <button class="editar" (click)="toggleModoEdicion(categoria)">✏️</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  
+    <div class="pup-up" [ngClass]="{ 'oculto': modoOculto }">
+      <div class="pop-up-container">
+        <span class="cerrar" (click)="editarModoOcuto()">❌</span>
+        <app-guardar-categoria class="editar" [categoriaGuardar]="categoriaGuardar" (modoOculto)="editarModoOcuto()" (loading)="setLoading()"></app-guardar-categoria>
+        
+      </div>
+    </div>
+  
+  </div>

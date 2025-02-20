@@ -1,0 +1,35 @@
+<div class="contenido-menu">
+  <div class="menu-container">
+    <p class="facturacion">Facturación</p>
+    <ul>
+      <li>
+        <button routerLink="/app/dashboard" routerLinkActive="underline" [routerLinkActiveOptions]="{ exact: true }"> 📊 Dashboard </button>
+      </li>
+      <li>
+        <button routerLink="/app/cliente" routerLinkActive="underline" [routerLinkActiveOptions]="{ exact: true }"> 📁 Cliente </button>
+      </li>
+      <li>
+        <button routerLink="/app/categoria" routerLinkActive="underline" [routerLinkActiveOptions]="{ exact: true }"> 📚 Categoria </button>
+      </li>
+      <li>
+        <button routerLink="/app/bodega" routerLinkActive="underline" [routerLinkActiveOptions]="{ exact: true }"> 🗂️ Bodega </button>
+      </li>
+      <!--li>
+        <button routerLink="/app/proveedor" routerLinkActive="underline" [routerLinkActiveOptions]="{ exact: true }"> 🚚 Proveedor </button>
+      </li-->
+      <li>
+        <button routerLink="/app/producto" routerLinkActive="underline" [routerLinkActiveOptions]="{ exact: true }"> 🛒 Producto </button>
+      </li>
+      <li>
+        <button routerLink="/app/factura" routerLinkActive="underline" [routerLinkActiveOptions]="{ exact: true }"> 📝 ventas </button>
+      </li>
+      <li>
+        <button routerLink="/app/lista-factura" routerLinkActive="underline" [routerLinkActiveOptions]="{ exact: true }"> 📋 Historial de ventas </button>
+      </li>
+    </ul>
+
+  </div>
+  <button class="salir" (click)="salir()">✖️ Salir</button>
+
+</div>
+<router-outlet></router-outlet>

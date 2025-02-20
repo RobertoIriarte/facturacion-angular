@@ -1,0 +1,63 @@
+<div class="pop-up">
+    <form [formGroup]="productoForm" (ngSubmit)="guardar()">
+      <div>
+        <label for="nombre">Nombre:</label>
+        <div>
+          <input type="text" formControlName="nombre" placeholder="Nombre">
+          <span *ngIf="productoForm.get('nombre') && productoForm.get('nombre')!.errors && productoForm.get('nombre')!.touched">
+            Por favor, ingrese solo texto.
+          </span>
+        </div>
+  
+      </div>
+  
+      <div>
+        <label for="precio">Precio:</label>
+        <div>
+          <input type="number" formControlName="precio" placeholder="precio">
+          <span *ngIf="productoForm.get('precio')?.invalid && (productoForm.get('precio')?.dirty || productoForm.get('precio')?.touched)">
+            Por favor, ingrese un precio válido.
+          </span>
+        </div>
+      </div>
+      <div>
+        <label for="stock">Stock:</label>
+        <div>
+          <input type="number" formControlName="stock" placeholder="stock">
+          <span *ngIf="productoForm.get('stock')?.invalid && (productoForm.get('stock')?.dirty || productoForm.get('stock')?.touched)">
+            Por favor, ingrese un stock válido.
+          </span>
+        </div>
+      </div>
+      <div>
+        <label for="stockCritico">Stock Critico:</label>
+        <div>
+          <input type="number" formControlName="stockCritico" placeholder="stock Critico">
+          <span *ngIf="productoForm.get('stockCritico')?.invalid && (productoForm.get('stockCritico')?.dirty || productoForm.get('stockCritico')?.touched)">
+            Por favor, ingrese un stock válido.
+          </span>
+        </div>
+      </div>
+  
+      <div style="display: none;">
+        <label for="fechaCreacion">Fecha Creacion:</label>
+        <div>
+          <input class="" type="date" formControlName="fechaCreacion" placeholder="fecha Creacion">
+        </div>
+      </div>
+  
+      
+  
+      <!--div>
+        <label for="fechaVencimiento">Fecha Vencimiento:</label>
+        <div>
+          <input class="" type="date" formControlName="fechaVencimiento" placeholder="fechaVencimiento">
+          <span *ngIf="productoForm.get('fechaVencimiento')?.invalid && (productoForm.get('fechaVencimiento')?.dirty || productoForm.get('fechaVencimiento')?.touched)">
+            Por favor, ingrese una fecha válida.
+          </span>
+        </div>
+      </div-->
+      
+      <button type="submit">Guardar</button>
+    </form>
+  </div>

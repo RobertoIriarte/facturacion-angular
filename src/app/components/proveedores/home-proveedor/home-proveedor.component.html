@@ -1,0 +1,59 @@
+<div class="table-container">
+    <loading-spinners *ngIf="isLoading"></loading-spinners>
+    <p class="rojo">
+      Tabla de proveedores
+    </p>
+  
+    <div class="buscar">
+      <label for="">Buscar: </label>
+      <input type="text" (keyup)="buscar($event)">
+      
+    </div>
+  
+    <button id="nuevo" (click)="toggleModoNuevo()" >Nuevo +</button>
+    
+    <div class="separador" style='height:70%;display:block;overflow: auto'>
+      <div>
+        <table>
+          <thead>
+            <tr>
+                <th>ID</th>
+                <th>Rut</th>
+                <th>Nombre</th>
+                <!--th>Direccion</th-->
+                <th>Correo</th>
+                <th>Fecha Creación</th>
+                <th class="eliminar">Acciones</th>
+            </tr>
+          </thead>
+          
+  
+          <tbody>
+            <!--tr *ngIf="!filtroProveedor?.length">
+                <td colspan="4" style="text-align: center;">No hay Categorias para mostrar</td>
+            </tr-->
+            <tr *ngFor="let proveedor of filtroProveedor">
+              <td>{{ proveedor.proveedor_id }}</td>
+              <td>{{ proveedor.rut }}-{{ proveedor.dv }}</td>
+              <td >{{ proveedor.nombre }}</td>
+              <td>{{ proveedor.correo }}</td>
+              <td>{{ proveedor.fechaCreacion }}</td>
+              <td class="eliminar">
+                <button (click)="eliminarPorId(proveedor.cliente_id)">❌</button>
+                <button class="editar" (click)="toggleModoEdicion(proveedor)">✏️</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  
+    <div class="pup-up" [ngClass]="{ 'oculto': modoOculto }">
+      <div class="pop-up-container">
+        <span class="cerrar" (click)="editarModoOcuto()">❌</span>
+        <app-guardar-proveedor class="editar" [proveedorGuardar]="proveedorGuardar" (modoOculto)="editarModoOcuto()" (loading)="setLoading()"></app-guardar-proveedor>
+        
+      </div>
+    </div>
+  
+  </div>

@@ -1,0 +1,94 @@
+
+
+
+<div class="table-container">
+  <loading-spinners *ngIf="isLoading"></loading-spinners>
+  <p class="rojo">
+    Tabla de productos
+  </p>
+
+  <div class="buscar">
+    <label for="">Buscar: </label>
+    <input type="text" (keyup)="buscar($event)">
+    
+  </div>
+
+  <button id="nuevo" (click)="toggleModoNuevo()">Nuevo +</button>
+  
+  <div class="separador" style='height:54%;display:block;overflow: auto'>
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th>Stock Critico </th>
+            <th class="eliminar">Acciones</th>
+          </tr>
+        </thead>
+        
+
+        <tbody>
+          <tr *ngFor="let producto of filtroProductos">
+            <td>{{ producto.producto_id }}</td>
+            <td>{{ producto.nombre }}</td>
+            <td>${{ producto.precio | number }}</td>
+            <td>{{ producto.stock }}</td>
+            <td>{{ producto.stockCritico }}</td>
+            <td class="eliminar">
+              <button (click)="clickDelete(producto.nombre, producto.producto_id)">❌</button>
+              <button class="editar" (click)="toggleModoEdicion(producto)">✏️</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="pup-up" [ngClass]="{ 'oculto': modoOculto }">
+    <div class="pop-up-container">
+      <span class="cerrar" (click)="editarModoOcuto()">❌</span>
+      <app-guardar-producto class="editar" [productosEditar]="productosEditar" (modoOculto)="editarModoOcuto()" (loading)="setLoading()"></app-guardar-producto>
+      
+    </div>
+  </div>
+  
+  <button id="nuevo" (click)="generatePDF()">Generar Reporte</button>
+</div>
+
+<div  id="contentToConvert" style="display: none;">
+  <div class="table-container">
+    <p class="rojo" style="justify-content: center; font-weight: bold;">
+      Tabla de productos
+    </p>
+    
+    <div class="separador">
+      <div>
+        <table style="border-collapse: collapse;">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Precio</th>
+              <th>Stock</th>
+              <th>Stock Critico </th>
+            </tr>
+          </thead>
+          
+
+          <tbody>
+            <tr *ngFor="let producto of filtroProductos">
+              <td>{{ producto.producto_id }}</td>
+              <td>{{ producto.nombre }}</td>
+              <td>${{ producto.precio | number }}</td>
+              <td>{{ producto.stock }}</td>
+              <td>{{ producto.stockCritico }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

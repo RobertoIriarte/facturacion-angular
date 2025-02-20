@@ -1,0 +1,61 @@
+
+
+
+<div class="table-container">
+  <loading-spinners *ngIf="isLoading"></loading-spinners>
+  <p class="rojo">
+    Tabla de clientes
+  </p>
+
+  <div class="buscar">
+    <label for="">Buscar: </label>
+    <input type="text" (keyup)="buscar($event)">
+    
+  </div>
+
+  <button id="nuevo" routerLink="/app/cliente/nuevo" >Nuevo +</button>
+  
+  <div class="separador" style='height:70%;display:block;overflow: auto'>
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Rut</th>
+            <th>Nombre</th>
+            <!--th>Direccion</th-->
+            <th>Correo</th>
+            <th>Activo</th>
+            <th>Fecha Creación</th>
+            <th class="eliminar">Acciones</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let cliente of filtroClientes">
+            <td>{{ cliente.cliente_id }}</td>
+            <td>{{ cliente.rut }}-{{ cliente.dv }}</td>
+            <td >{{ cliente.nombre }}</td>
+            <!--td>{{ cliente.direccion }}</td-->
+            <td>{{ cliente.correo }}</td>
+            <td>{{ cliente.activo }}</td>
+            <td>{{ cliente.fechaCreacion }}</td>
+            <td class="eliminar">
+              <button (click)="clickDelete(cliente.nombre, cliente.cliente_id)">❌</button>
+              <button class="editar" (click)="toggleModoEdicion(cliente)">✏️</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="pup-up" [ngClass]="{ 'oculto': modoOculto }">
+    <div class="pop-up-container">
+      <span class="cerrar" (click)="editarModoOcuto()">❌</span>
+      <app-editar-cliente class="editar" [personaEditar]="personaEditar" (modoOculto)="editarModoOcuto()" (loading)="setLoading()"></app-editar-cliente>
+      
+    </div>
+  </div>
+
+</div>

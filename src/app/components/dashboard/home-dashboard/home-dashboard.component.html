@@ -1,0 +1,77 @@
+
+
+<div class="table-container">
+    <loading-spinners *ngIf="isLoading"></loading-spinners>
+    <p class="rojo">
+      Dashboard
+    </p>
+
+    <!-- Main -->
+    <main class="main-container">
+
+        <div class="main-title">
+            <h2>Resumen del mes</h2>
+        </div>
+
+        <div class="main-cards">
+
+            <div class="card">
+                <div class="card-inner">
+                    <h3>Total Ingresos</h3>
+                    <span class="material-icons-outlined">payments</span>
+                </div>
+                <h1>$ {{ ingresos | number }}</h1>
+            </div>
+
+            <div class="card">
+                <div class="card-inner">
+                    <h3>Total de ventas</h3>
+                    <span class="material-icons-outlined">sell</span>
+                </div>
+                <h1>{{ ventas }}</h1>
+            </div>
+
+            <div class="card">
+                <div class="card-inner">
+                    <h3>Total productos</h3>
+                    <span class="material-icons-outlined">inventory</span>
+                </div>
+                <h1>{{ productos }}</h1>
+            </div>
+
+            <div class="card">
+                <div class="card-inner">
+                    <h3>Total Clientes</h3>
+                    <span class="material-icons-outlined">groups</span>
+                </div>
+                <h1>{{ clientes }}</h1>
+            </div>
+
+        </div>
+
+        <!--div class="main-title">
+            <h2>Resumen del año</h2>
+        </div>
+
+        <div class="products">
+            <div class="product-card">
+                <canvas id="chart">{{ chart }}</canvas>
+            </div>
+        </div-->
+
+        <div class="products">
+
+            <div class="product-card">
+                <h2 class="product-description">Ventas mensuales del año</h2>
+                <canvas id="chartBar">{{ chartBar }}</canvas>
+            </div>
+            <!--div class="product-card-pie">
+                <h2 class="product-description">Productos mas vendidos</h2>
+                <canvas id="chartPie">{{ chartPie }}</canvas>
+            </div-->
+        </div>
+
+    </main>
+    <!-- End Main -->
+  
+  </div>
